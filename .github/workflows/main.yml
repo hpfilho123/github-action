@@ -38,4 +38,5 @@ jobs:
 
     - name: Push Docker Image to Registry
       run: |
-        docker push bernhoeft/teste:1.0
+        docker tag bernhoeft/teste:1.0 ghcr.io/bernhoeft/teste:1.0
+        docker push ghcr.io/bernhoeft/teste:1.0
