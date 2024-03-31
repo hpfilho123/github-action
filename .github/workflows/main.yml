@@ -1,9 +1,7 @@
 name: Node.js CI/CD with Docker
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   build: 
@@ -30,9 +28,9 @@ jobs:
           --build-arg DB_USER=$DB_USER \
           --build-arg DB_PASSWORD=$DB_PASSWORD \
           --build-arg DB_NAME=$DB_NAME \
-          -t your-image-name .
+          -t bernhoeft/teste:1.0 .
 
     - name: Push Docker Image to Registry
       run: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} --password-stdin
-        docker push your-image-name
+        docker login -u anonimous123 -p anonimous123
+        docker push bernhoeft/teste:1.0
