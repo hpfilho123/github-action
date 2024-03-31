@@ -34,9 +34,9 @@ jobs:
           --build-arg DB_USER=$DB_USER \
           --build-arg DB_PASSWORD=$DB_PASSWORD \
           --build-arg DB_NAME=$DB_NAME \
-          -t ghcr.io/bernhoeft/teste:1.0 -f Dockerfile .
+          -t ghcr.io/hpfilho123/github-action/teste:lasted -f Dockerfile .
 
     - name: Push Docker Image to Registry
       run: |
-        docker tag ghcr.io/bernhoeft/teste:1.0 ghcr.io/bernhoeft/teste:1.0
-        docker push ghcr.io/bernhoeft/teste:1.0
+        docker tag ghcr.io/hpfilho123/github-action/teste:lasted ghcr.io/hpfilho123/github-action/teste:lasted
+        docker push ghcr.io/hpfilho123/github-action/teste:lasted
