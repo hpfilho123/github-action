@@ -32,5 +32,5 @@ jobs:
 
     - name: Push Docker Image to Registry
       run: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} 
+        docker login -u anonimous123 -p dckr_pat_AjE4VME7vTPQNg_c1hmYNuEmzrM
         docker push bernhoeft/teste:1.0
