@@ -16,6 +16,12 @@ jobs:
       with:
         node-version: '18'  # Atualize para a versão do Node.js que você está usando
 
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ghcr.io
+        username: ${{ secrets.GH_PACKAGES_USER }}
+        password: ${{ secrets.GH_PACKAGES_TOKEN }}
+
     - name: Install Dependencies
       run: npm install
 
@@ -23,7 +29,7 @@ jobs:
       run: |
         docker build \
           --build-arg NODE_ENV=production \
-          --build-arg DB_HOST=$DB_HOST \
+          --build-arg DB_HOST=$DB_HOST \  
           --build-arg DB_PORT=$DB_PORT \
           --build-arg DB_USER=$DB_USER \
           --build-arg DB_PASSWORD=$DB_PASSWORD \
@@ -32,5 +38,4 @@ jobs:
 
     - name: Push Docker Image to Registry
       run: |
-        docker login -u anonimous123 -p dckr_pat_AjE4VME7vTPQNg_c1hmYNuEmzrM
         docker push bernhoeft/teste:1.0
