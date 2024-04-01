@@ -4,10 +4,8 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                // Passo para fazer o pull da imagem Docker
                 script {
                     docker.withRegistry('https://ghcr.io', 'git-hub-token-jenkins') {
-                        // Passo para fazer o pull da imagem Docker
                         def dockerImage = docker.image('hpfilho123/github-action/teste:lasted')
                         dockerImage.pull()
                     }
@@ -15,7 +13,7 @@ pipeline {
                 // Passo para implantar a imagem Docker
                 script {
                     def dockerImage = docker.image('ghcr.io/hpfilho123/github-action/teste:lasted')
-                    dockerImage.run('-p 3000:3000 --name minha-aplicacao -d')
+                    dockerImage.run('--name teste-api --restart always -d -p 3000:3000 -it --privileged')
                 }
             }
         }
