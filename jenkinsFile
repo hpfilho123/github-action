@@ -15,7 +15,7 @@ pipeline {
                 // Passo para implantar a imagem Docker
                 script {
                     def dockerImage = docker.image('ghcr.io/hpfilho123/github-action/teste:lasted')
-                    dockerImage.run('-p 30:30 --name minha-aplicacao -d')
+                    dockerImage.run('-p 3000:3000 --name minha-aplicacao -d')
                 }
             }
         }
