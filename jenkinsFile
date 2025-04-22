@@ -10,7 +10,7 @@ pipeline {
                         dockerImage.pull()
 
                         // Remove container antigo se existir
-                        sh "docker rm -f teste-api || true"
+                        sh "sudo docker rm -f teste-api || true"
 
                         // Executa o novo container
                         dockerImage.run('--name teste-api --restart always -d -p 3000:3000 -it --privileged')
