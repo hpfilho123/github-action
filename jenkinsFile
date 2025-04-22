@@ -6,14 +6,15 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://ghcr.io', 'git-hub-token-jenkins') {
-                        def dockerImage = docker.image('hpfilho123/github-action/teste:lasted')
+                        def dockerImage = docker.image('hpfilho123/github-action/teste:latest')
                         dockerImage.pull()
+
+                        // Remove container antigo se existir
+                        sh "docker rm -f teste-api || true"
+
+                        // Executa o novo container
+                        dockerImage.run('--name teste-api --restart always -d -p 3000:3000 -it --privileged')
                     }
-                }
-                // Passo para implantar a imagem Docker
-                script {
-                    def dockerImage = docker.image('ghcr.io/hpfilho123/github-action/teste:lasted')
-                    dockerImage.run('--name teste-api --restart always -d -p 3000:3000 -it --privileged')
                 }
             }
         }
